@@ -1,0 +1,95 @@
+﻿@{
+    string controller =
+        ViewContext.RouteData.Values["controller"].ToString();
+    string action =
+        ViewContext.RouteData.Values["action"].ToString();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EventManager</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/EventManager.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-sm border-bottom bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-controller="Event" asp-action="Index">
+                <span class="fas fa-calendar-day"></span>
+                Event Management System
+            </a>
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#MainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="MainNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Event" asp-action="Index">Home</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-link">Hello, @User.Identity.Name</li>
+                        @if (User.IsInRole("Administrator"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link
+                                @(controller.StartsWith("Admin") ? "active" : "")"
+                                   asp-controller="AdminHome" asp-action="Index">Admin</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <form asp-action="Logout" asp-controller="Account" method="post">
+
+                                <button class="btn btn-link nav-link" type="submit">Log Out</button>
+
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link
+                        @(controller == "Account" && action == "Register" ? "active fw-bold text-decoration-underline" : "")"
+                               asp-action="Register" asp-controller="Account">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link
+                        @(controller == "Account" && action == "Login" ? "active fw-bold text-decoration-underline" : "")"
+                               asp-action="Login" asp-controller="Account">Log in</a>
+                        </li>
+                    }
+                    @* <li class="nav-item">
+                        <a class="nav-link" asp-controller="Account" asp-action="Register">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Account" asp-action="Login">Log in</a>
+                    </li> *@
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="container p-3 bg-light">
+        @RenderBody()
+    </main>
+
+    <!-- Footer -->
+    <footer class="container border-top text-muted text-center">
+        <p>NM. Lubisi (2018754206)</p>
+        <p>
+            &copy; 2024 - UFS (Event Management System)
+        </p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script asp-src-include="/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

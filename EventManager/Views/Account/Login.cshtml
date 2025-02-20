@@ -1,0 +1,29 @@
+﻿@model UserViewModels.LoginModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Log In</h2>
+<div class="text-danger" asp-validation-summary=ModelOnly></div>
+
+<form asp-action="Login" method="post">
+
+    <input type="hidden" asp-for="ReturnUrl" />
+
+    <div class="mb-3">
+        <label asp-for="UserName" class="form-label"></label>
+        <div><span asp-validation-for="UserName" class="text-danger"></span></div>
+        <input asp-for="UserName" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <div><span asp-validation-for="Password" class="text-danger"></span></div>
+        <input asp-for="Password" class="form-control" />
+    </div>
+    <button class="btn btn-primary" type="submit">Log In</button>
+    <button class="btn btn-primary">
+        <a asp-action="Register" asp-controller="Account"></a>
+        Register
+    </button>
+</form>

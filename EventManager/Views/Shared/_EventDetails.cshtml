@@ -1,0 +1,36 @@
+﻿@model Event
+<h2 class="fw-bold">@Model.EventTitle</h2>
+
+<p>
+    <span class="fw-bold">
+        @Html.DisplayNameFor(model => model.EventDescription)
+    </span>: @Model.EventDescription
+</p>
+<p>
+    <span class="fw-bold">
+        @Html.DisplayNameFor(model => model.EventStartDate)
+    </span>: @Model.EventStartDate
+</p>
+@if (Model.EventEndDate.HasValue)
+{
+    <p>
+        <span class="fw-bold">
+            @Html.DisplayNameFor(model => model.EventEndDate)
+        </span>: @Model.EventEndDate
+    </p>
+}
+<p>
+    <span class="fw-bold">
+        @Html.DisplayNameFor(model => model.EventLocation)
+    </span>: @Model.EventLocation
+</p>
+<p>
+    <span class="fw-bold">
+        @Html.DisplayNameFor(model => model.EventDescription)
+    </span>: @Model.EventDescription
+</p>
+<p>
+    <span class="fw-bold">
+        @Html.DisplayNameFor(model => model.EventMaxAttendees)
+    </span>: @Model.EventMaxAttendees
+</p>

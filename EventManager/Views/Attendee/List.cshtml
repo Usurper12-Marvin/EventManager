@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Attendee>
+@{
+    ViewData["Title"] = "List";
+}
+<h2>List of Attendees</h2>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AttendeeName)
+                @* AttendeeNamee *@
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AttendeeEmail)
+                @* AttendeeEmail *@
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.AttendeeName
+                    @* Attendee Name *@
+                </td>
+                <td>
+                    @item.AttendeeEmail
+                    @* Attendee Email *@
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<div class="text-danger"><strong>Total Attendees: </strong>@Model.Count()</div> @*EventRegistrations*@

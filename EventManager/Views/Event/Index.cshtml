@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Event>
+@{
+    ViewBag.Title = "Home";
+}
+<div class="rounded text-center text-light bg-primary p-5 my-3">
+    <h1>Welcome to the Event Management System</h1>
+    <p>Find and register for awesome events happening near you!</p>
+</div>
+
+<h3 class="text-primary">Upcoming Events</h3>
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered">
+        <tbody>
+            @foreach (Event item in Model)
+            {
+                <tr>
+                    <td>
+                        <h4>@item.EventTitle</h4> @* Event Title *@
+                        <div>@item.EventStartDate.ToString("yyyy/MM/dd")</div> @* Event Start Date *@
+                        <a class="btn btn-primary my-3"
+                           asp-action="Details" asp-controller="Event" asp-route-id="@item.EventId" role="link">
+                            View Details
+                        </a>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <a class="btn btn-primary my-3"
+                               asp-action="List" asp-controller="Attendee" asp-route-id="@item.EventId" role="link">
+                                View Attendees
+                            </a>
+                        }
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No upcoming events found at this time.</p>
+}

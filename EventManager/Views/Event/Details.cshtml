@@ -1,0 +1,17 @@
+﻿@model Event
+@{
+    ViewData["Title"] = "Details";
+}
+
+<partial name="_EventDetails" model="@Model" />
+<p>
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Attendee"))
+    {
+        <a class="btn btn-primary"
+           asp-action="Register" asp-controller="Attendee" asp-route-id="@Model.EventId">Register</a>
+    }
+
+    <a class="btn btn-outline-primary"
+    asp-action="Index" asp-controller="Event">Return to Home Page</a>
+    
+</p>

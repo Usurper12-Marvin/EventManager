@@ -1,0 +1,21 @@
+﻿@model Attendee
+@{
+    ViewData["Title"] = "Confirmation";
+}
+<h1>Thank You for Registering!</h1>
+<hr />
+
+<partial name="_EventDetails" model="@Model" />
+
+<p>
+    <strong>List of attendees:</strong>
+    <br />
+    <div></div> @* Attendee details *@
+</p>
+
+<p>
+    <button class="btn btn-primary"  type="submit">
+        <a class="btn btn-primary" 
+        asp-action="Index" asp-controller="Event">Return to Home Page</a>
+    </button>
+</p>
