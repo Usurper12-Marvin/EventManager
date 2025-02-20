@@ -8,7 +8,7 @@
     @if (User.Identity.IsAuthenticated && User.IsInRole("Attendee"))
     {
         <a class="btn btn-primary"
-           asp-action="Register" asp-controller="Attendee" asp-route-id="@Model.EventId">Register</a>
+           asp-action="AttendeeReg" asp-controller="Attendee" role="link">Register</a>
     }
 
     <a class="btn btn-outline-primary"

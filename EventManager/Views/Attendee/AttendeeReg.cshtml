@@ -1,0 +1,18 @@
+﻿@model Attendee
+@{
+    ViewData["Title"] = "Register";
+}
+<h2>Event Registration</h2>
+<hr />
+
+<p>
+    <span class="fw-bold">
+        Name
+    </span>: @User.Identity.Name
+</p>
+
+<p>
+    <a asp-action="Confirmation" asp-controller="Attendee" asp-route-id="@Model.EventId" asp-route-id="@Model.AttendeeId" class="btn btn-primary">Complete Registration</a>
+    @* <input asp-action="Confirmation" asp-controller="Attendee" value="Complete Registration" class="btn btn-primary" @* asp-route-id="@Model.AttendeeId" /> *@
+    <a asp-action="Details" asp-controller="Event" asp-route-id="@Model.EventId" class="btn btn-outline-primary">Back to Event Details</a>
+</p>

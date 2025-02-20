@@ -29,18 +29,18 @@ namespace EventManager.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult Register(int eventID)
+        public IActionResult AttendeeReg(int EventID)
         {
-            var Event = _eventRepository.GetEventId(eventID);
-            return View(Event);
+            //var Event = _eventRepository.GetEventId(eventID);
+            return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Register(Attendee attendee)
+        public async Task<IActionResult> AttendeeReg(Attendee attendee)
         {
             if (ModelState.IsValid)
             {
                 var user = await _userManager.GetUserAsync(User);
-                var Event = _eventRepository.GetEventId(EventId);
+                //var Event = _eventRepository.GetEventId(EventId);
                 attendee = new Attendee
                 {
                     AttendeeName = user.UserName,
